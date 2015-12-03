@@ -30,17 +30,11 @@ namespace BarcodeDesktopApp
 
         private void LookupBarcode(string barcode)
         {
-            string res = "";
-            for (long i = 0; i < 500000; i++)
-            {
-                Random rnd = new Random();
-                int month = rnd.Next(1, 13);
-                res = string.Format("Bacode{0} Rnd{1}", barcode, month);
-            }
-            this.SetText(res);
+                      this.SetText(barcode);
         }
 
         delegate void SetTextCallback(string text);
+       
 
         private void SetText(string text)
         {

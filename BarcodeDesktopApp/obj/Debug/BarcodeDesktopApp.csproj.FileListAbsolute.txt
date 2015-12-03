@@ -17,3 +17,6 @@ C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\Barc
 C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.Start.resources
 C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.csproj.GenerateResource.Cache
 C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.BarcodeForm.resources
+C:\Users\Vicki Till\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.exe.config
+C:\Users\Vicki Till\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.exe
+C:\Users\Vicki Till\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.pdb
