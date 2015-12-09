@@ -32,6 +32,7 @@
             this.lbScannedBarcodes = new System.Windows.Forms.ListBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lbDecodedBarcode = new System.Windows.Forms.ListBox();
+            this.btnProcess = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,7 +59,7 @@
             this.lbScannedBarcodes.ItemHeight = 22;
             this.lbScannedBarcodes.Location = new System.Drawing.Point(0, 0);
             this.lbScannedBarcodes.Name = "lbScannedBarcodes";
-            this.lbScannedBarcodes.Size = new System.Drawing.Size(210, 565);
+            this.lbScannedBarcodes.Size = new System.Drawing.Size(210, 512);
             this.lbScannedBarcodes.TabIndex = 1;
             // 
             // splitContainer1
@@ -76,7 +77,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lbDecodedBarcode);
-            this.splitContainer1.Size = new System.Drawing.Size(631, 565);
+            this.splitContainer1.Size = new System.Drawing.Size(631, 512);
             this.splitContainer1.SplitterDistance = 210;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -88,19 +89,34 @@
             this.lbDecodedBarcode.ItemHeight = 22;
             this.lbDecodedBarcode.Location = new System.Drawing.Point(0, 0);
             this.lbDecodedBarcode.Name = "lbDecodedBarcode";
-            this.lbDecodedBarcode.Size = new System.Drawing.Size(417, 565);
+            this.lbDecodedBarcode.Size = new System.Drawing.Size(417, 512);
             this.lbDecodedBarcode.TabIndex = 0;
+            // 
+            // btnProcess
+            // 
+            this.btnProcess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProcess.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProcess.Location = new System.Drawing.Point(494, 568);
+            this.btnProcess.Name = "btnProcess";
+            this.btnProcess.Size = new System.Drawing.Size(149, 47);
+            this.btnProcess.TabIndex = 3;
+            this.btnProcess.Text = "Process";
+            this.btnProcess.UseVisualStyleBackColor = true;
             // 
             // BarcodeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 627);
+            this.Controls.Add(this.btnProcess);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.tbScannedBarcode);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "BarcodeForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Barcode App";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -117,6 +133,7 @@
         internal System.Windows.Forms.ListBox lbScannedBarcodes;
         internal System.Windows.Forms.TextBox tbScannedBarcode;
         internal System.Windows.Forms.ListBox lbDecodedBarcode;
+        private System.Windows.Forms.Button btnProcess;
     }
 }
 

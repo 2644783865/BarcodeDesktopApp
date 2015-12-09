@@ -12,25 +12,17 @@ namespace BarcodeDesktopApp
         internal void OnBarcodeScanned(object sender, BarcodeEventArgs e)
         {
             BarcodeForm bcInstance = BarcodeForm.GetInstance();
-            bcInstance.lbScannedBarcodes.Items.Add(e.Barcode);
+            if (e.Barcode != "9916" && e.Barcode != "9918" && e.Barcode != "9917" && e.Barcode != "9999") { 
+                bcInstance.lbScannedBarcodes.Items.Add(e.Barcode);
+                Task.Factory.StartNew(() => LookupBarcode(e.Barcode));
+            }
             bcInstance.tbScannedBarcode.Text = "";
-
-            Task.Factory.StartNew(() => LookupBarcode(e.Barcode));
-
-
         }
 
-        //static CancellationTokenSource cts = new CancellationTokenSource();
-
-        //static TaskFactory factory = new TaskFactory(
-        //   cts.Token,
-        //   TaskCreationOptions.PreferFairness,
-        //   TaskContinuationOptions.ExecuteSynchronously, 
-        //   null);
-
+       
         private void LookupBarcode(string barcode)
-        {
-                      this.SetText(barcode);
+        {      
+                this.SetText(barcode);            
         }
 
         delegate void SetTextCallback(string text);
