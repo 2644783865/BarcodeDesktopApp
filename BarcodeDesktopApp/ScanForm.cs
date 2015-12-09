@@ -16,6 +16,12 @@ namespace BarcodeDesktopApp
 
 
         public EventHandler<BarcodeEventArgs> BarcodeScanned;
+        public EventHandler ProcessScannedCodes;
+
+        protected virtual void OnProcessScannedCodes()
+        {
+            ProcessScannedCodes(this, new EventArgs());
+        }
 
         protected virtual void OnBarcodeScanned(string barCode)
         {
@@ -23,7 +29,7 @@ namespace BarcodeDesktopApp
             if (BarcodeScanned != null)
             {
                 // Call the Event
-                BarcodeScanned(this, new BarcodeEventArgs() { Barcode = barCode } );
+                BarcodeScanned(this, new BarcodeEventArgs() { Barcode = barCode });
             }
         }
 
@@ -41,6 +47,13 @@ namespace BarcodeDesktopApp
                 OnBarcodeScanned(barcode);
             }
         }
+
+        private void btnProcess_Click(object sender, EventArgs e)
+        {
+            OnProcessScannedCodes();
+        }
+
+      
 
         // #####################################  INSTANCE  ##################
 
