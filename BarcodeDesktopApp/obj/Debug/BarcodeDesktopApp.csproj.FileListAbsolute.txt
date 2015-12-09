@@ -20,3 +20,6 @@ C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\Barc
 C:\Users\Vicki Till\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.exe.config
 C:\Users\Vicki Till\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.exe
 C:\Users\Vicki Till\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.pdb
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.exe.config
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.exe
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.pdb
