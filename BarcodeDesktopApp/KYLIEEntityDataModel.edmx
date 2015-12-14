@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KYLIEEntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="Contract_PK" />
+          </Key>
+          <Property Name="Contract_PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContractName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContractDetails" Type="nvarchar" MaxLength="500" />
+          <Property Name="JobNumberPrefix" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DISP_Dispatch">
+          <Key>
+            <PropertyRef Name="Dispactch_PK" />
+          </Key>
+          <Property Name="Dispactch_PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HutchDispRefID" Type="int" Nullable="false" />
+          <Property Name="ContractID" Type="int" Nullable="false" />
+          <Property Name="IsPending" Type="int" Nullable="false" />
+          <Property Name="DeliveryDate" Type="date" Nullable="false" />
+          <Property Name="DeliveryNotes" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DispatchedBy" Type="int" Nullable="false" />
+          <Property Name="Addr1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Addr2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Addr3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Town" Type="nvarchar" MaxLength="50" />
+          <Property Name="County" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GalvDeliveries">
+          <Key>
+            <PropertyRef Name="GalvDelID" />
+          </Key>
+          <Property Name="GalvDelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IssueDate" Type="date" Nullable="false" />
+          <Property Name="GalvDestination" Type="nvarchar" MaxLength="50" />
+          <Property Name="PORaised" Type="int" />
+          <Property Name="WagonType" Type="int" />
+          <Property Name="PO_FK" Type="int" />
+          <Property Name="RejectedOnDelivery" Type="int" />
+        </EntityType>
+        <EntityType Name="SCAN_AssemblyScans">
+          <Key>
+            <PropertyRef Name="AssemblyScanID" />
+          </Key>
+          <Property Name="AssemblyScanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Barcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntityID" Type="int" Nullable="false" />
+          <Property Name="UniqueIdentifier" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SCAN_ScanType">
+          <Key>
+            <PropertyRef Name="ScanID" />
+          </Key>
+          <Property Name="ScanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScanType" Type="int" Nullable="false" />
+          <Property Name="ScanDate" Type="date" Nullable="false" />
+          <Property Name="Barcode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SCAN_ScanTypeAssemblyScans">
+          <Key>
+            <PropertyRef Name="ScanID" />
+            <PropertyRef Name="AssemblyScanID" />
+          </Key>
+          <Property Name="ScanID" Type="int" Nullable="false" />
+          <Property Name="AssemblyScanID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="testProductSubComponents">
+          <Key>
+            <PropertyRef Name="SubComponents_PK" />
+          </Key>
+          <Property Name="SubComponents_PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductComponents_FK" Type="int" Nullable="false" />
+          <Property Name="SubComponentDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SubComponentQty" Type="int" Nullable="false" />
+          <Property Name="DrawingNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="DrawingRevision" Type="nvarchar" MaxLength="10" />
+          <Property Name="SectionDescription" Type="nvarchar(max)" />
+          <Property Name="SectionLength" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SectionWeight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BarcodeRequired" Type="int" />
+          <Property Name="PartsArray" Type="nvarchar(max)" />
+          <Property Name="AmICommon" Type="int" />
+          <Property Name="RandUID" Type="int" />
+          <Property Name="Galvanisable" Type="int" />
+          <Property Name="TempSuffix" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sherardize" Type="int" />
+          <Property Name="Paint" Type="int" />
+          <Property Name="ValidAss" Type="int" />
+          <Property Name="ActualQuantity" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="InBucket" Type="int" />
+        </EntityType>
+        <Association Name="FK_SCAN_ScanTypeAssemblyScans_SCAN_AssemblyScans">
+          <End Role="SCAN_AssemblyScans" Type="Self.SCAN_AssemblyScans" Multiplicity="1" />
+          <End Role="SCAN_ScanTypeAssemblyScans" Type="Self.SCAN_ScanTypeAssemblyScans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SCAN_AssemblyScans">
+              <PropertyRef Name="AssemblyScanID" />
+            </Principal>
+            <Dependent Role="SCAN_ScanTypeAssemblyScans">
+              <PropertyRef Name="AssemblyScanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SCAN_ScanTypeAssemblyScans_SCAN_ScanType">
+          <End Role="SCAN_ScanType" Type="Self.SCAN_ScanType" Multiplicity="1" />
+          <End Role="SCAN_ScanTypeAssemblyScans" Type="Self.SCAN_ScanTypeAssemblyScans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SCAN_ScanType">
+              <PropertyRef Name="ScanID" />
+            </Principal>
+            <Dependent Role="SCAN_ScanTypeAssemblyScans">
+              <PropertyRef Name="ScanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KYLIEEntityModelStoreContainer">
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DISP_Dispatch" EntityType="Self.DISP_Dispatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GalvDeliveries" EntityType="Self.GalvDeliveries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SCAN_AssemblyScans" EntityType="Self.SCAN_AssemblyScans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SCAN_ScanType" EntityType="Self.SCAN_ScanType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SCAN_ScanTypeAssemblyScans" EntityType="Self.SCAN_ScanTypeAssemblyScans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="testProductSubComponents" EntityType="Self.testProductSubComponents" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SCAN_ScanTypeAssemblyScans_SCAN_AssemblyScans" Association="Self.FK_SCAN_ScanTypeAssemblyScans_SCAN_AssemblyScans">
+            <End Role="SCAN_AssemblyScans" EntitySet="SCAN_AssemblyScans" />
+            <End Role="SCAN_ScanTypeAssemblyScans" EntitySet="SCAN_ScanTypeAssemblyScans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SCAN_ScanTypeAssemblyScans_SCAN_ScanType" Association="Self.FK_SCAN_ScanTypeAssemblyScans_SCAN_ScanType">
+            <End Role="SCAN_ScanType" EntitySet="SCAN_ScanType" />
+            <End Role="SCAN_ScanTypeAssemblyScans" EntitySet="SCAN_ScanTypeAssemblyScans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KYLIEEntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Assembly">
+          <Key>
+            <PropertyRef Name="SubComponents_PK" />
+          </Key>
+          <Property Name="SubComponents_PK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductComponents_FK" Type="Int32" Nullable="false" />
+          <Property Name="SubComponentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubComponentQty" Type="Int32" Nullable="false" />
+          <Property Name="DrawingNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DrawingRevision" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SectionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SectionLength" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SectionWeight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BarcodeRequired" Type="Int32" />
+          <Property Name="PartsArray" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AmICommon" Type="Int32" />
+          <Property Name="RandUID" Type="Int32" />
+          <Property Name="Galvanisable" Type="Int32" />
+          <Property Name="TempSuffix" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Sherardize" Type="Int32" />
+          <Property Name="Paint" Type="Int32" />
+          <Property Name="ValidAss" Type="Int32" />
+          <Property Name="ActualQuantity" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="InBucket" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="KYLIEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Assemblies" EntityType="KYLIEEntityModel.Assembly" />
+          <EntitySet Name="Contracts" EntityType="KYLIEEntityModel.Contract" />
+          <EntitySet Name="Dispatches" EntityType="KYLIEEntityModel.Dispatch" />
+          <EntitySet Name="GalvDeliveries" EntityType="KYLIEEntityModel.GalvDelivery" />
+          <EntitySet Name="SCAN_AssemblyScans" EntityType="KYLIEEntityModel.SCAN_AssemblyScans" />
+          <EntitySet Name="SCAN_ScanType" EntityType="KYLIEEntityModel.SCAN_ScanType" />
+          <AssociationSet Name="SCAN_ScanTypeAssemblyScans" Association="KYLIEEntityModel.SCAN_ScanTypeAssemblyScans">
+            <End Role="SCAN_AssemblyScans" EntitySet="SCAN_AssemblyScans" />
+            <End Role="SCAN_ScanType" EntitySet="SCAN_ScanType" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="Contract_PK" />
+          </Key>
+          <Property Name="Contract_PK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContractName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContractDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="JobNumberPrefix" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Dispatch">
+          <Key>
+            <PropertyRef Name="Dispactch_PK" />
+          </Key>
+          <Property Name="Dispactch_PK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HutchDispRefID" Type="Int32" Nullable="false" />
+          <Property Name="ContractID" Type="Int32" Nullable="false" />
+          <Property Name="IsPending" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DeliveryNotes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DispatchedBy" Type="Int32" Nullable="false" />
+          <Property Name="Addr1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Addr2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Addr3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Town" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="County" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GalvDelivery">
+          <Key>
+            <PropertyRef Name="GalvDelID" />
+          </Key>
+          <Property Name="GalvDelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IssueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GalvDestination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PORaised" Type="Int32" />
+          <Property Name="WagonType" Type="Int32" />
+          <Property Name="PO_FK" Type="Int32" />
+          <Property Name="RejectedOnDelivery" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SCAN_AssemblyScans">
+          <Key>
+            <PropertyRef Name="AssemblyScanID" />
+          </Key>
+          <Property Name="AssemblyScanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Barcode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntityID" Type="Int32" Nullable="false" />
+          <Property Name="UniqueIdentifier" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SCAN_ScanType" Relationship="KYLIEEntityModel.SCAN_ScanTypeAssemblyScans" FromRole="SCAN_AssemblyScans" ToRole="SCAN_ScanType" />
+        </EntityType>
+        <EntityType Name="SCAN_ScanType">
+          <Key>
+            <PropertyRef Name="ScanID" />
+          </Key>
+          <Property Name="ScanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScanType" Type="Int32" Nullable="false" />
+          <Property Name="ScanDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SCAN_AssemblyScans" Relationship="KYLIEEntityModel.SCAN_ScanTypeAssemblyScans" FromRole="SCAN_ScanType" ToRole="SCAN_AssemblyScans" />
+        </EntityType>
+        <Association Name="SCAN_ScanTypeAssemblyScans">
+          <End Type="KYLIEEntityModel.SCAN_AssemblyScans" Role="SCAN_AssemblyScans" Multiplicity="*" />
+          <End Type="KYLIEEntityModel.SCAN_ScanType" Role="SCAN_ScanType" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KYLIEEntityModelStoreContainer" CdmEntityContainer="KYLIEEntities">
+          <EntitySetMapping Name="Assemblies">
+            <EntityTypeMapping TypeName="KYLIEEntityModel.Assembly">
+              <MappingFragment StoreEntitySet="testProductSubComponents">
+                <ScalarProperty Name="SubComponents_PK" ColumnName="SubComponents_PK" />
+                <ScalarProperty Name="ProductComponents_FK" ColumnName="ProductComponents_FK" />
+                <ScalarProperty Name="SubComponentDescription" ColumnName="SubComponentDescription" />
+                <ScalarProperty Name="SubComponentQty" ColumnName="SubComponentQty" />
+                <ScalarProperty Name="DrawingNumber" ColumnName="DrawingNumber" />
+                <ScalarProperty Name="DrawingRevision" ColumnName="DrawingRevision" />
+                <ScalarProperty Name="SectionDescription" ColumnName="SectionDescription" />
+                <ScalarProperty Name="SectionLength" ColumnName="SectionLength" />
+                <ScalarProperty Name="SectionWeight" ColumnName="SectionWeight" />
+                <ScalarProperty Name="BarcodeRequired" ColumnName="BarcodeRequired" />
+                <ScalarProperty Name="PartsArray" ColumnName="PartsArray" />
+                <ScalarProperty Name="AmICommon" ColumnName="AmICommon" />
+                <ScalarProperty Name="RandUID" ColumnName="RandUID" />
+                <ScalarProperty Name="Galvanisable" ColumnName="Galvanisable" />
+                <ScalarProperty Name="TempSuffix" ColumnName="TempSuffix" />
+                <ScalarProperty Name="Sherardize" ColumnName="Sherardize" />
+                <ScalarProperty Name="Paint" ColumnName="Paint" />
+                <ScalarProperty Name="ValidAss" ColumnName="ValidAss" />
+                <ScalarProperty Name="ActualQuantity" ColumnName="ActualQuantity" />
+                <ScalarProperty Name="InBucket" ColumnName="InBucket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="KYLIEEntityModel.Contract">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="JobNumberPrefix" ColumnName="JobNumberPrefix" />
+                <ScalarProperty Name="ContractDetails" ColumnName="ContractDetails" />
+                <ScalarProperty Name="ContractName" ColumnName="ContractName" />
+                <ScalarProperty Name="Contract_PK" ColumnName="Contract_PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dispatches">
+            <EntityTypeMapping TypeName="KYLIEEntityModel.Dispatch">
+              <MappingFragment StoreEntitySet="DISP_Dispatch">
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="Addr3" ColumnName="Addr3" />
+                <ScalarProperty Name="Addr2" ColumnName="Addr2" />
+                <ScalarProperty Name="Addr1" ColumnName="Addr1" />
+                <ScalarProperty Name="DispatchedBy" ColumnName="DispatchedBy" />
+                <ScalarProperty Name="DeliveryNotes" ColumnName="DeliveryNotes" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="IsPending" ColumnName="IsPending" />
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="HutchDispRefID" ColumnName="HutchDispRefID" />
+                <ScalarProperty Name="Dispactch_PK" ColumnName="Dispactch_PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GalvDeliveries">
+            <EntityTypeMapping TypeName="KYLIEEntityModel.GalvDelivery">
+              <MappingFragment StoreEntitySet="GalvDeliveries">
+                <ScalarProperty Name="RejectedOnDelivery" ColumnName="RejectedOnDelivery" />
+                <ScalarProperty Name="PO_FK" ColumnName="PO_FK" />
+                <ScalarProperty Name="WagonType" ColumnName="WagonType" />
+                <ScalarProperty Name="PORaised" ColumnName="PORaised" />
+                <ScalarProperty Name="GalvDestination" ColumnName="GalvDestination" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="GalvDelID" ColumnName="GalvDelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SCAN_AssemblyScans">
+            <EntityTypeMapping TypeName="KYLIEEntityModel.SCAN_AssemblyScans">
+              <MappingFragment StoreEntitySet="SCAN_AssemblyScans">
+                <ScalarProperty Name="UniqueIdentifier" ColumnName="UniqueIdentifier" />
+                <ScalarProperty Name="EntityID" ColumnName="EntityID" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="AssemblyScanID" ColumnName="AssemblyScanID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SCAN_ScanType">
+            <EntityTypeMapping TypeName="KYLIEEntityModel.SCAN_ScanType">
+              <MappingFragment StoreEntitySet="SCAN_ScanType">
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="ScanDate" ColumnName="ScanDate" />
+                <ScalarProperty Name="ScanType" ColumnName="ScanType" />
+                <ScalarProperty Name="ScanID" ColumnName="ScanID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SCAN_ScanTypeAssemblyScans" TypeName="KYLIEEntityModel.SCAN_ScanTypeAssemblyScans" StoreEntitySet="SCAN_ScanTypeAssemblyScans">
+            <EndProperty Name="SCAN_ScanType">
+              <ScalarProperty Name="ScanID" ColumnName="ScanID" />
+            </EndProperty>
+            <EndProperty Name="SCAN_AssemblyScans">
+              <ScalarProperty Name="AssemblyScanID" ColumnName="AssemblyScanID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

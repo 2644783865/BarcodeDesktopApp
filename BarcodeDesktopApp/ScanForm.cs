@@ -12,10 +12,23 @@ namespace BarcodeDesktopApp
 {
     public partial class BarcodeForm : Form
     {
-
-
-
         public EventHandler<BarcodeEventArgs> BarcodeScanned;
+        public EventHandler<BarcodeProcessEventArgs> ProcessScannedCodes;
+        public EventHandler<EventArgs> ProcessStock;
+
+        protected virtual void OnProcessStock()
+        {
+            ProcessStock(this, new EventArgs());
+        }
+
+        /// <summary>
+        /// OnProcessScannedCodes starts the decoding process
+        /// </summary>
+        /// <param name="type">BarcodeProcessType</param>
+        protected virtual void OnProcessScannedCodes(BarcodeProcessType type)
+        {
+            ProcessScannedCodes(this, new BarcodeProcessEventArgs() { type = type});
+        }
 
         protected virtual void OnBarcodeScanned(string barCode)
         {
@@ -23,7 +36,7 @@ namespace BarcodeDesktopApp
             if (BarcodeScanned != null)
             {
                 // Call the Event
-                BarcodeScanned(this, new BarcodeEventArgs() { Barcode = barCode } );
+                BarcodeScanned(this, new BarcodeEventArgs() { Barcode = barCode });
             }
         }
 
@@ -42,6 +55,23 @@ namespace BarcodeDesktopApp
             }
         }
 
+        private void btnProcess_Click(object sender, EventArgs e)
+        {
+            BarcodeProcessType ProcessType = BarcodeProcessType.DISPATCH;
+            if (rbDispatch.Checked)
+            {
+                ProcessType = BarcodeProcessType.DISPATCH;
+            }
+            else if (rbRigging.Checked)
+            {
+                ProcessType = BarcodeProcessType.RIGGING;
+            }
+
+            OnProcessScannedCodes(ProcessType);
+        }
+
+      
+
         // #####################################  INSTANCE  ##################
 
         private static BarcodeForm bcForm = null;
@@ -57,6 +87,9 @@ namespace BarcodeDesktopApp
             return bcForm;
         }
 
-
+        private void tbScannedBarcode_Leave(object sender, EventArgs e)
+        {
+            tbScannedBarcode.Focus();
+        }
     }
 }

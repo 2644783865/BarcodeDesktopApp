@@ -1,25 +1,14 @@
-C:\Users\Vicki Till\AppData\Local\Temporary Projects\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.exe.config
-C:\Users\Vicki Till\AppData\Local\Temporary Projects\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.exe
-C:\Users\Vicki Till\AppData\Local\Temporary Projects\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.pdb
-C:\Users\Vicki Till\AppData\Local\Temporary Projects\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.csprojResolveAssemblyReference.cache
-C:\Users\Vicki Till\AppData\Local\Temporary Projects\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.Properties.Resources.resources
-C:\Users\Vicki Till\AppData\Local\Temporary Projects\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.csproj.GenerateResource.Cache
-C:\Users\Vicki Till\AppData\Local\Temporary Projects\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.exe
-C:\Users\Vicki Till\AppData\Local\Temporary Projects\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.pdb
-C:\Users\Vicki Till\AppData\Local\Temporary Projects\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.BarcodeForm.resources
-C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.exe.config
-C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.exe
-C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.pdb
-C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.exe
-C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.pdb
-C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.csprojResolveAssemblyReference.cache
-C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.Properties.Resources.resources
-C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.Start.resources
-C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.csproj.GenerateResource.Cache
-C:\Users\Vicki Till\Documents\Visual Studio 2015\Projects\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.BarcodeForm.resources
-C:\Users\Vicki Till\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.exe.config
-C:\Users\Vicki Till\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.exe
-C:\Users\Vicki Till\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.pdb
 C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.exe.config
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.exe
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\BarcodeDesktopApp.pdb
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\EntityFramework.dll
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\EntityFramework.xml
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.BarcodeForm.resources
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.Properties.Resources.resources
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.csproj.GenerateResource.Cache
 C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.exe
 C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.pdb
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.csprojResolveAssemblyReference.cache
+C:\Users\stuart\Documents\GitHubVisualStudio\BarcodeDesktopApp\BarcodeDesktopApp\obj\Debug\BarcodeDesktopApp.TestManyToMany.resources

@@ -22,7 +22,13 @@ namespace BarcodeDesktopApp
             BarcodeScannedEvents eventHelper = new BarcodeScannedEvents(); // Subscriber
 
             bcScanner.BarcodeScanned += eventHelper.OnBarcodeScanned;
+            bcScanner.ProcessScannedCodes += eventHelper.OnProcessScannedCodes;
+            bcScanner.ProcessStock += eventHelper.OnProcessStock;
             bcScanner.ShowDialog();
+
+            //TestManyToMany t = new TestManyToMany();
+            //t.ShowDialog();
+
         }
     }
 }
