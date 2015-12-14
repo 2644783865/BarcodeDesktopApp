@@ -38,6 +38,7 @@
             this.rbDispatch = new System.Windows.Forms.RadioButton();
             this.gbStatus = new System.Windows.Forms.GroupBox();
             this.lbStockStatus = new System.Windows.Forms.ListBox();
+            this.btnCalculate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -157,6 +158,7 @@
             // 
             this.gbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbStatus.Controls.Add(this.btnCalculate);
             this.gbStatus.Controls.Add(this.lbStockStatus);
             this.gbStatus.Font = new System.Drawing.Font("Trebuchet MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbStatus.Location = new System.Drawing.Point(675, 12);
@@ -173,8 +175,21 @@
             this.lbStockStatus.ItemHeight = 22;
             this.lbStockStatus.Location = new System.Drawing.Point(17, 38);
             this.lbStockStatus.Name = "lbStockStatus";
-            this.lbStockStatus.Size = new System.Drawing.Size(343, 444);
+            this.lbStockStatus.Size = new System.Drawing.Size(343, 400);
             this.lbStockStatus.TabIndex = 0;
+            // 
+            // btnCalculate
+            // 
+            this.btnCalculate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCalculate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCalculate.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalculate.Location = new System.Drawing.Point(211, 450);
+            this.btnCalculate.Name = "btnCalculate";
+            this.btnCalculate.Size = new System.Drawing.Size(149, 47);
+            this.btnCalculate.TabIndex = 7;
+            this.btnCalculate.Text = "Calculate";
+            this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // BarcodeForm
             // 
@@ -216,6 +231,7 @@
         private System.Windows.Forms.RadioButton rbDispatch;
         private System.Windows.Forms.GroupBox gbStatus;
         internal System.Windows.Forms.ListBox lbStockStatus;
+        private System.Windows.Forms.Button btnCalculate;
     }
 }
 

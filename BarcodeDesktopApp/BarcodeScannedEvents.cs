@@ -196,7 +196,7 @@ namespace BarcodeDesktopApp
                         SCAN_ScanType so = ctx.SCAN_ScanType.FirstOrDefault(f => f.Barcode == scanObject.ScanObjectIdentifier);
                         if (so != null)
                         {
-                            MessageBox.Show (string.Format("{0} has already been scanned.", so.Barcode));
+                            MessageBox.Show(string.Format("{0} has already been scanned.", so.Barcode));
                             return;
                         }
 
@@ -242,14 +242,15 @@ namespace BarcodeDesktopApp
                     }
                 }
             }
-           
+
             catch (Exception expn)
             {
-               MessageBox.Show (expn.Message);
+                MessageBox.Show(expn.Message);
             }
             finally
             {
-
+                // Should really fire an update stock event here
+                UpdateStockStatus();
             }
         }
 
@@ -257,7 +258,154 @@ namespace BarcodeDesktopApp
         {
 
             BarcodeForm.GetInstance().lbStockStatus.Items.Clear();
-            BarcodeForm.GetInstance().lbStockStatus.Items.Add("TEST");
+            BarcodeForm.GetInstance().lbStockStatus.Items.Add(string.Format("Stock Status: {0} on {1}.", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString()));
+
+            using (KYLIEEntities ctx = new KYLIEEntities())
+            {
+
+                int dispatchTypeID = (int)Convert.ChangeType(BarcodeProcessType.DISPATCH, BarcodeProcessType.DISPATCH.GetTypeCode());
+                int galvanisingTypeID = (int)Convert.ChangeType(BarcodeProcessType.GALVANISING, BarcodeProcessType.GALVANISING.GetTypeCode());
+
+                Dictionary<int, int> entityGalvanisingIDs = new Dictionary<int, int>();
+                Dictionary<int, int> entityDispatchIDs = new Dictionary<int, int>();
+
+                // ##########  GALAVANISING #######################
+
+                var galavanisingEntityIDsScanned = (from st in ctx.SCAN_ScanType
+                                                    where st.ScanType == galvanisingTypeID
+                                                    select st.SCAN_AssemblyScans).ToList();
+
+                foreach (var sList in galavanisingEntityIDsScanned)
+                {
+                    foreach (var s in sList)
+                    {
+                        // Must be first time round, so add the first Assembly EntityID
+                        if (entityGalvanisingIDs.Count == 0)
+                        {
+                            entityGalvanisingIDs.Add(s.EntityID, 1);
+                        }
+                        else
+                        {
+                            foreach (var a in entityGalvanisingIDs)
+                            {
+                                if (entityGalvanisingIDs.ContainsKey(s.EntityID))
+                                {
+                                    entityGalvanisingIDs[s.EntityID] = entityGalvanisingIDs[s.EntityID]+1;
+                                    break;
+                                }
+                                else
+                                {
+                                    entityGalvanisingIDs.Add(s.EntityID, 1);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                List<int> distinctScannedGalvanisingEntityIDs = entityGalvanisingIDs.Keys.ToList();
+                var descriptionAssemblyGalvanising = ctx.Assemblies.Where(f => distinctScannedGalvanisingEntityIDs.Contains(f.SubComponents_PK)).Select(f => new { id = f.SubComponents_PK, desc = f.SubComponentDescription }).ToList();
+
+                // ###### DISPATCH ##############################
+
+                var dispatchEntityIDsScanned = (from st in ctx.SCAN_ScanType
+                                                    where st.ScanType == dispatchTypeID
+                                                    select st.SCAN_AssemblyScans).ToList();
+
+                foreach (var sList in dispatchEntityIDsScanned)
+                {
+                    foreach (var s in sList)
+                    {
+                        // Must be first time round, so add the first Assembly EntityID
+                        if (entityDispatchIDs.Count == 0)
+                        {
+                            entityDispatchIDs.Add(s.EntityID, 1);
+                        }
+                        else
+                        {
+                            foreach (var a in entityDispatchIDs)
+                            {
+                                if (entityDispatchIDs.ContainsKey(s.EntityID))
+                                {
+                                    entityDispatchIDs[s.EntityID] = entityDispatchIDs[s.EntityID] + 1;
+                                    break;
+                                }
+                                else
+                                {
+                                    entityDispatchIDs.Add(s.EntityID, 1);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+
+
+                List<int> distinctScannedDispatchEntityIDs = entityDispatchIDs.Keys.ToList();
+                var descriptionAssemblyDispatch = ctx.Assemblies.Where(f => distinctScannedDispatchEntityIDs.Contains(f.SubComponents_PK)).Select(f => new { id = f.SubComponents_PK, desc = f.SubComponentDescription }).ToList();
+
+
+
+
+
+
+                // ####### DISPLAY #############################
+
+                BarcodeForm.GetInstance().lbStockStatus.Items.Add("");
+                BarcodeForm.GetInstance().lbStockStatus.Items.Add("Scanned back from galvanising");
+                BarcodeForm.GetInstance().lbStockStatus.Items.Add("");
+
+
+                foreach (var d in descriptionAssemblyGalvanising)
+                {
+                    int cnt = 0;
+                    string assyDesc = "";
+                    if (d.desc == null)
+                    { assyDesc = "Can't find the assembly!!!!"; }
+                    else { assyDesc = string.Format("\t{0} {1}", d.desc, entityGalvanisingIDs.TryGetValue(d.id, out cnt) ? cnt : 0); }
+                    BarcodeForm.GetInstance().lbStockStatus.Items.Add(assyDesc);
+                }
+
+                BarcodeForm.GetInstance().lbStockStatus.Items.Add("");
+                BarcodeForm.GetInstance().lbStockStatus.Items.Add("Scanned as dispatched");
+                BarcodeForm.GetInstance().lbStockStatus.Items.Add("");
+
+
+                foreach (var d in descriptionAssemblyDispatch)
+                {
+                    int cnt = 0;
+                    string assyDesc = "";
+                    if (d == null)
+                    { assyDesc = "Can't find the assembly!!!!"; }
+                    else { assyDesc = string.Format("\t{0} {1}", d.desc, entityDispatchIDs.TryGetValue(d.id, out cnt) ? cnt : 0); }
+                    BarcodeForm.GetInstance().lbStockStatus.Items.Add(assyDesc);
+                }
+
+                BarcodeForm.GetInstance().lbStockStatus.Items.Add("");
+                BarcodeForm.GetInstance().lbStockStatus.Items.Add("Stock level");
+                BarcodeForm.GetInstance().lbStockStatus.Items.Add("");
+
+                foreach (var d in descriptionAssemblyGalvanising)
+                {
+                    int cntGalv = 0;
+                    int cntDisp = 0;
+                    string assyDesc = "";
+                    if (d.desc == null)
+                    { assyDesc = "Can't find the assembly!!!!"; }
+                    else
+                    {
+                        int backFromGalv = entityGalvanisingIDs.TryGetValue(d.id, out cntGalv) ? cntGalv : 0;
+                        int sentToDispatch = entityDispatchIDs.TryGetValue(d.id, out cntDisp) ? cntDisp : 0;
+
+                        assyDesc = string.Format("\t{0} {1}", d.desc, (backFromGalv-sentToDispatch));
+                            }
+                    BarcodeForm.GetInstance().lbStockStatus.Items.Add(assyDesc);
+                }
+
+            }
 
         }
 
@@ -390,4 +538,7 @@ namespace BarcodeDesktopApp
         public int UniqueIdentifier { get; set; }
     }
 
+
 }
+
+

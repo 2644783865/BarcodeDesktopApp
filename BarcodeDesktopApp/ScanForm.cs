@@ -91,5 +91,10 @@ namespace BarcodeDesktopApp
         {
             tbScannedBarcode.Focus();
         }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            OnProcessStock();
+        }
     }
 }
